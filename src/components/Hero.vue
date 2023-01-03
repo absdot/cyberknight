@@ -101,22 +101,22 @@
           <!-- Parallax gfx -->
           <div class="parallax mx-auto me-lg-0" style="max-width: 648px">
             <div class="parallax-layer" data-depth="0.1">
-              <img src="assets/images/hero/users/layer01.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer01.png" alt="Layer" />
             </div>
             <div class="parallax-layer" data-depth="0.13">
-              <img src="assets/images/hero/users/layer02.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer02.png" alt="Layer" />
             </div>
             <div class="parallax-layer zindex-5" data-depth="-0.12">
-              <img src="assets/images/hero/users/layer03.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer03.png" alt="Layer" />
             </div>
             <div class="parallax-layer zindex-3" data-depth="0.27">
-              <img src="assets/images/hero/users/layer04.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer04.png" alt="Layer" />
             </div>
             <div class="parallax-layer zindex-1" data-depth="-0.18">
-              <img src="assets/images/hero/users/layer05.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer05.png" alt="Layer" />
             </div>
             <div class="parallax-layer zindex-1" data-depth="0.1">
-              <img src="assets/images/hero/users/layer06.png" alt="Layer" />
+              <img src="/assets/images/hero/users/layer06.png" alt="Layer" />
             </div>
           </div>
         </div>

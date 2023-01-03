@@ -5,7 +5,7 @@
       <div class="text-center pt-5">
         <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
           <img
-            src="assets/images/avatar/18.jpg"
+            src="/assets/images/avatar/18.jpg"
             class="d-block rounded-circle"
             width="120"
             alt="John Doe"

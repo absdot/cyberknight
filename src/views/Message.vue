@@ -60,7 +60,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/19.jpg"
+                      src="/assets/images/avatar/19.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Devon Lane"
@@ -87,7 +87,7 @@
                       class="position-absolute top-0 start-0 bg-primary w-2 h-100"
                     ></div>
                     <img
-                      src="assets/images/avatar/20.jpg"
+                      src="/assets/images/avatar/20.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
@@ -109,7 +109,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/21.jpg"
+                      src="/assets/images/avatar/21.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Bessie Cooper"
@@ -131,7 +131,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/22.jpg"
+                      src="/assets/images/avatar/22.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Ronald Richards"
@@ -153,7 +153,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/23.jpg"
+                      src="/assets/images/avatar/23.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Robert Fox"
@@ -175,7 +175,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/24.jpg"
+                      src="/assets/images/avatar/24.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Jerome Bell"
@@ -199,7 +199,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/25.jpg"
+                      src="/assets/images/avatar/25.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Kathryn Murphy"
@@ -221,7 +221,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/26.jpg"
+                      src="/assets/images/avatar/26.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Dianne Russell"
@@ -243,7 +243,7 @@
                     class="d-flex align-items-start border-bottom text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/27.jpg"
+                      src="/assets/images/avatar/27.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Cody Fisher"
@@ -267,7 +267,7 @@
                     class="d-flex align-items-start text-decoration-none bg-faded-primary-hover py-3 px-4"
                   >
                     <img
-                      src="assets/images/avatar/28.jpg"
+                      src="/assets/images/avatar/28.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Darlene Robertson"
@@ -310,7 +310,7 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <img
-                  src="assets/images/avatar/20.jpg"
+                  src="/assets/images/avatar/20.jpg"
                   class="rounded-circle"
                   width="40"
                   alt="Albert Flores"
@@ -377,7 +377,7 @@
                   <!-- User message -->
                   <div class="d-flex align-items-start mb-3">
                     <img
-                      src="assets/images/avatar/20.jpg"
+                      src="/assets/images/avatar/20.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
@@ -423,7 +423,7 @@
                       </div>
                     </div>
                     <img
-                      src="assets/images/avatar/29.jpg"
+                      src="/assets/images/avatar/29.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
@@ -433,7 +433,7 @@
                   <!-- User message -->
                   <div class="d-flex align-items-start mb-3">
                     <img
-                      src="assets/images/avatar/20.jpg"
+                      src="/assets/images/avatar/20.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
@@ -489,7 +489,7 @@
                       </div>
                     </div>
                     <img
-                      src="assets/images/avatar/29.jpg"
+                      src="/assets/images/avatar/29.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
@@ -503,7 +503,7 @@
                   <!-- User message -->
                   <div class="d-flex align-items-start mb-3">
                     <img
-                      src="assets/images/avatar/20.jpg"
+                      src="/assets/images/avatar/20.jpg"
                       class="rounded-circle"
                       width="40"
                       alt="Albert Flores"
