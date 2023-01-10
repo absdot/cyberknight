@@ -1,7 +1,7 @@
 <template>
   <!-- Modal with tabs and forms -->
   <div class="modal fade" tabindex="-1" role="dialog" id="signInModal">
-    <div class="modal-dialog modal-sm-" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <!-- Modal header with nav tabs -->
         <div class="modal-header">
@@ -46,10 +46,12 @@
             class="tab-pane fade show active"
             autocomplete="off"
             id="signin"
+            @submit.prevent="onSignIn($event)"
           >
             <div class="mb-3">
               <label class="form-label" for="email1">Email address</label>
               <input
+                v-model="_signIn.email"
                 class="form-control"
                 type="email"
                 id="email1"
@@ -59,7 +61,12 @@
             <div class="mb-3">
               <label class="form-label" for="pass1">Password</label>
               <div class="password-toggle">
-                <input class="form-control" type="password" id="pass1" />
+                <input
+                  v-model="_signIn.password"
+                  class="form-control"
+                  type="password"
+                  id="pass1"
+                />
                 <label class="password-toggle-btn">
                   <input class="password-toggle-check" type="checkbox" /><span
                     class="password-toggle-indicator"
@@ -67,7 +74,7 @@
                 </label>
               </div>
             </div>
-            <div class="mb-3 d-flex flex-wrap justify-content-between">
+            <!-- <div class="mb-3 d-flex flex-wrap justify-content-between">
               <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" id="remember" />
                 <label class="form-check-label" for="remember"
@@ -75,17 +82,23 @@
                 >
               </div>
               <a class="fs-sm" href="#">Forgot password?</a>
-            </div>
+            </div> -->
             <button class="btn btn-primary d-block w-100" type="submit">
               Sign in
             </button>
           </form>
 
           <!-- Sign up form -->
-          <form class="tab-pane fade" autocomplete="off" id="signup">
+          <form
+            class="tab-pane fade"
+            autocomplete="off"
+            id="signup"
+            @submit.prevent="onSignUp($event)"
+          >
             <div class="mb-3">
               <label class="form-label" for="name">Full name</label>
               <input
+                v-model="_signUp.displayName"
                 class="form-control"
                 type="text"
                 id="name"
@@ -95,6 +108,7 @@
             <div class="mb-3">
               <label class="form-label" for="email2">Email address</label>
               <input
+                v-model="_signUp.email"
                 class="form-control"
                 type="email"
                 id="email2"
@@ -104,7 +118,12 @@
             <div class="mb-3">
               <label class="form-label" for="pass2">Password</label>
               <div class="password-toggle">
-                <input class="form-control" type="password" id="pass2" />
+                <input
+                  v-model="_signUp.password"
+                  class="form-control"
+                  type="password"
+                  id="pass2"
+                />
                 <label class="password-toggle-btn">
                   <input class="password-toggle-check" type="checkbox" /><span
                     class="password-toggle-indicator"
@@ -115,7 +134,12 @@
             <div class="mb-4">
               <label class="form-label" for="pass3">Confirm password</label>
               <div class="password-toggle">
-                <input class="form-control" type="password" id="pass3" />
+                <input
+                  v-model="_signUp.password_confirmation"
+                  class="form-control"
+                  type="password"
+                  id="pass3"
+                />
                 <label class="password-toggle-btn">
                   <input class="password-toggle-check" type="checkbox" /><span
                     class="password-toggle-indicator"
@@ -132,3 +156,24 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+import { mainStore } from "@/store";
+const { signIn, signUp } = mainStore();
+
+const _signIn = ref({});
+const _signUp = ref({});
+
+const onSignIn = () => {
+  signIn(_signIn.value).then(() => {
+    location.href = "/messages";
+  });
+};
+
+const onSignUp = () => {
+  signUp(_signUp.value).then(() => {
+    location.href = "/messages";
+  });
+};
+</script>

@@ -1,7 +1,7 @@
 <template>
   <!-- Hero -->
   <section
-    class="dark-mode bg-dark bg-size-cover bg-repeat-0 bg-position-center position-relative overflow-hidden py-5 mb-4"
+    class="dark-mode bg-dark bg-size-cover bg-repeat-0 bg-position-center position-relative overflow-hidden py-4"
     style="background-image: url(/assets/images/hero/hero-bg.jpg)"
   >
     <div
@@ -27,11 +27,13 @@
               <input
                 type="email"
                 class="form-control w-40-"
-                placeholder="Enter your GMail address"
+                placeholder="Enter your email address"
               />
               <button type="submit" class="btn btn-icon- btn-primary btn-lg w-20-">
                 <!-- <i class="bx bx-search"></i> -->
-                Request to join
+                <!-- Request to join -->
+                Subscribe 
+                <!-- to Newsletter -->
               </button>
             </div>
           </form>

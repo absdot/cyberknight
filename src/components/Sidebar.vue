@@ -4,8 +4,9 @@
     <div class="position-sticky top-0">
       <div class="text-center pt-5">
         <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
+          <!-- src="/assets/images/avatar/18.jpg" -->
           <img
-            src="/assets/images/avatar/18.jpg"
+            :src="authUser.photoURL"
             class="d-block rounded-circle"
             width="120"
             alt="John Doe"
@@ -20,8 +21,8 @@
             <i class="bx bx-refresh"></i>
           </button>
         </div>
-        <h2 class="h5 mb-1">John Doe</h2>
-        <p class="mb-3 pb-3">jonny@email.com</p>
+        <h2 class="h5 mb-1">{{ authUser.displayName ?? "John Doe" }}</h2>
+        <p class="mb-3 pb-3">{{ authUser.email }}</p>
         <button
           type="button"
           class="btn btn-secondary w-100 d-md-none mt-n2 mb-3"
@@ -36,58 +37,38 @@
           id="account-menu"
           class="list-group list-group-flush collapse d-md-block"
         >
-          <a
-            href="account-details.html"
+          <router-link
+            :to="{ name: 'messages' }"
+            class="list-group-item list-group-item-action d-flex align-items-center"
+          >
+            <i class="bx bx-chat fs-xl opacity-60 me-2"></i>
+            Messages
+          </router-link>
+          <router-link
+            :to="{ name: 'home' }"
+            class="list-group-item list-group-item-action d-flex align-items-center"
+          >
+            <i class="bx bx-collection fs-xl opacity-60 me-2"></i>
+            Rooms
+          </router-link>
+          <router-link
+            :to="{ name: 'profile' }"
             class="list-group-item list-group-item-action d-flex align-items-center"
           >
             <i class="bx bx-cog fs-xl opacity-60 me-2"></i>
-            Accountt Details
-          </a>
-          <a
-            href="account-security.html"
+            Profile
+          </router-link>
+          <router-link
+            :to="{ name: 'security' }"
             class="list-group-item list-group-item-action d-flex align-items-center"
           >
             <i class="bx bx-lock-alt fs-xl opacity-60 me-2"></i>
             Security
-          </a>
+          </router-link>
           <a
-            href="account-notifications.html"
+            href="#"
             class="list-group-item list-group-item-action d-flex align-items-center"
-          >
-            <i class="bx bx-bell fs-xl opacity-60 me-2"></i>
-            Notifications
-          </a>
-          <a
-            href="account-messages.html"
-            class="list-group-item list-group-item-action d-flex align-items-center active"
-          >
-            <i class="bx bx-chat fs-xl opacity-60 me-2"></i>
-            Messages
-          </a>
-          <a
-            href="account-saved-items.html"
-            class="list-group-item list-group-item-action d-flex align-items-center"
-          >
-            <i class="bx bx-bookmark fs-xl opacity-60 me-2"></i>
-            Saved Items
-          </a>
-          <a
-            href="account-collections.html"
-            class="list-group-item list-group-item-action d-flex align-items-center"
-          >
-            <i class="bx bx-collection fs-xl opacity-60 me-2"></i>
-            My Collections
-          </a>
-          <a
-            href="account-payment.html"
-            class="list-group-item list-group-item-action d-flex align-items-center"
-          >
-            <i class="bx bx-credit-card-front fs-xl opacity-60 me-2"></i>
-            Payment Details
-          </a>
-          <a
-            href="account-signin.html"
-            class="list-group-item list-group-item-action d-flex align-items-center"
+            @click="onSignOut()"
           >
             <i class="bx bx-log-out fs-xl opacity-60 me-2"></i>
             Sign Out
@@ -97,3 +78,19 @@
     </div>
   </aside>
 </template>
+
+<script setup>
+import { useRouter } from "vue-router";
+import { mainStore } from "@/store";
+import { storeToRefs } from "pinia";
+const { authUser } = storeToRefs(mainStore());
+const { signUserOut } = mainStore();
+
+const router = useRouter();
+
+const onSignOut = () => {
+  signUserOut().then(() => {
+    router.push({ name: "home" });
+  });
+};
+</script>

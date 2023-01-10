@@ -46,41 +46,77 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <template v-if="!authUser.uid">
-        <button
+      <template v-if="!authenticated">
+        <!-- <button
           class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#signInModal"
         >
-          <i class="bx bx-lock fs-5 lh-1 me-1"></i>
+          <i class="bx bx-lock-open fs-5 lh-1 me-1"></i>
+          &nbsp;Sign In
+        </button> -->
+        <button
+          class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+          type="button"
+          @click="onSignIn()"
+        >
+          <i class="bx bx-lock-open fs-5 lh-1 me-1"></i>
           &nbsp;Sign In
         </button>
       </template>
       <template v-else>
-        <router-link
-          :to="{ name: 'messages' }"
-          class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
-          rel="noopener"
-        >
-          <i class="bx bx-lock fs-5 lh-1 me-1"></i>
-          &nbsp;Sign In
-        </router-link>
+        <template v-if="!route.meta.auth">
+          <router-link
+            :to="{ name: 'messages' }"
+            class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+            rel="noopener"
+          >
+            <i class="bx bx-home fs-5 lh-1 me-1"></i>
+            &nbsp;Dashboard
+          </router-link>
+        </template>
+        <template v-else>
+          <button
+            class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+            type="button"
+            @click="onSignOut()"
+          >
+            <i class="bx bx-log-out fs-5 lh-1 me-1"></i>
+            &nbsp;Sign Out
+          </button>
+        </template>
       </template>
     </div>
   </header>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { mainStore } from "@/store";
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
-const { authUser } = mainStore();
+const { authenticated, authUser } = storeToRefs(mainStore());
+const { googleSignIn, signUserOut } = mainStore();
 
 const route = useRoute();
+const router = useRouter();
 
 onMounted(() => {
-  console.log("authUser:", authUser);
-});
+  console.log('authUser:', authUser.value);
+})
+
+const onSignIn = () => {
+  googleSignIn().then(() => {
+    console.log("onSignIn");
+    router.push({ name: "home" });
+  });
+};
+
+const onSignOut = () => {
+  signUserOut().then(() => {
+    router.push({ name: "home" });
+  });
+};
 </script>

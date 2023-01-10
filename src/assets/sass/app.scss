@@ -4,6 +4,29 @@
 // @import 'swiper/swiper.scss';
 @import '../css/theme.css';
 
+// .list-group-item + .list-group-item.router-link-active router-link-exact-active {
+//     margin-top: calc(var(--si-list-group-border-width) * -1);
+//     border-top-width: var(--si-list-group-border-width);
+// }
+
+.list-group-item + .list-group-item.router-link-active {
+    margin-top: calc(var(--si-list-group-border-width) * -1);
+    border-top-width: var(--si-list-group-border-width);
+}
+
+.list-group-item-action.router-link-active {
+    color: var(--si-list-group-action-active-color);
+    background-color: var(--si-list-group-action-active-bg);
+}
+
+.list-group-item.router-link-active {
+    z-index: 2;
+    color: var(--si-list-group-active-color);
+    background-color: var(--si-list-group-active-bg);
+    border-color: var(--si-list-group-active-border-color);
+    box-shadow: var(--si-list-group-active-box-shadow);
+}
+
 // .page-loading {
 //     position: fixed;
 //     top: 0;
