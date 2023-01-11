@@ -45,7 +45,7 @@
             Messages
           </router-link>
           <router-link
-            :to="{ name: 'home' }"
+            :to="{ name: 'rooms' }"
             class="list-group-item list-group-item-action d-flex align-items-center"
           >
             <i class="bx bx-collection fs-xl opacity-60 me-2"></i>

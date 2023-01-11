@@ -28,12 +28,13 @@ app.component("auth-layout", Auth);
 app.component("blank-layout", Blank);
 app.component("default-layout", Default);
 
-
 app.component("Header", Header);
 app.component("Sidebar", Sidebar);
 app.component("Footer", Footer);
 app.component("Button", Button);
 app.component("SignInModal", SignInModal);
+
+app.config.globalProperties.dayjs = dayjs;
 
 app.use(pinia);
 app.use(router);

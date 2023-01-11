@@ -4,9 +4,10 @@ import { mainStore } from "@/store";
 
 const Home = () => import("../views/Home.vue");
 const Dashboard = () => import("../views/Dashboard.vue");
+const Messages = () => import("../views/Messages.vue");
+const Room = () => import("../views/Room.vue");
 const Profile = () => import("../views/Profile.vue");
 const Security = () => import("../views/Security.vue");
-const Message = () => import("../views/Message.vue");
 const Error401 = () => import("../views/errors/Error401.vue");
 const Error404 = () => import("../views/errors/Error404.vue");
 
@@ -24,6 +25,18 @@ const routes = [
     meta: { layout: "auth", auth: true, title: "Dashboard" },
   },
   {
+    path: "/messages",
+    name: "messages",
+    component: Messages,
+    meta: { layout: "auth", auth: true, title: "Messages" },
+  },
+  {
+    path: "/rooms",
+    name: "rooms",
+    component: Room,
+    meta: { layout: "auth", auth: true, title: "Room" },
+  },
+  {
     path: "/profile",
     name: "profile",
     component: Profile,
@@ -35,12 +48,7 @@ const routes = [
     component: Security,
     meta: { layout: "auth", auth: true, title: "Security" },
   },
-  {
-    path: "/messages",
-    name: "messages",
-    component: Message,
-    meta: { layout: "auth", auth: true, title: "Messages" },
-  },
+  
   {
     path: "/401",
     name: "errors.401",

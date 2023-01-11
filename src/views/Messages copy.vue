@@ -374,6 +374,14 @@
                     November 27, 2021
                   </div>
 
+                  <Message :message="{
+                    uid: authUser.uid,
+                    photoURL: authUser.photoURL,
+                    displayName: 'Hello',
+                    text: 'Hello, world',
+                    createdAt: new Date(),
+                  }" />
+
                   <!-- User message -->
                   <div class="d-flex align-items-start mb-3">
                     <img
@@ -531,6 +539,7 @@
             <div class="card-footer d-sm-flex w-100 border-0 pt-3 pb-3 px-4">
               <div class="position-relative w-100 me-2 mb-3 mb-sm-0">
                 <input
+                  v-model="text"
                   type="text"
                   class="form-control form-control-lg"
                   style="padding-right: 85px"
@@ -555,12 +564,14 @@
               <button
                 type="button"
                 class="btn btn-primary btn-icon btn-lg d-none d-sm-inline-flex ms-1"
+                @click="onCreateMessage()"
               >
                 <i class="bx bx-send"></i>
               </button>
               <button
                 type="button"
                 class="btn btn-primary btn-lg w-100 d-sm-none"
+                @click="onCreateMessage()"
               >
                 <i class="bx bx-send fs-xl me-2"></i>
                 Send
@@ -574,15 +585,34 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+
+
+import Message from "@/components/Message.vue";
+
+import { onMounted, ref } from "vue";
 import { mainStore } from "@/store";
 import { storeToRefs } from "pinia";
 
-const { chats, chatrooms } = storeToRefs(mainStore());
-const { getChatrooms } = mainStore();
+const { authUser, chats, chatrooms } = storeToRefs(mainStore());
+const { getChatrooms, createMessage } = mainStore();
+
+const text = ref('');
 
 onMounted(() => {
-  getChatrooms();
-  console.log(chatrooms.value, chats.value);
+  // getChatrooms();
+  // console.log(chatrooms.value, chats.value);
+
+  // ResKKassjqWjQ8xp0o4EZ1UE8HJ3
+  
 });
+
+const onCreateMessage = () => {
+  console.log('create message:', text.value);
+  createMessage(text.value);
+};
 </script>

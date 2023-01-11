@@ -7,7 +7,10 @@
   <section class="container pt-5">
     <div class="row">
       <Sidebar />
-      <slot />
+      <!-- <div class="col-md-8 col-lg-9 pb-5 mb-lg-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0"> -->
+      <div class="col-md-8 col-lg-9 p-4">
+        <slot />
+      </div>
     </div>
   </section>
   <!-- </main> -->

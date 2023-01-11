@@ -1,4 +1,4 @@
-import SmoothScroll from "smooth-scroll";
+
 // import jQuery from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "@/assets/sass/app.scss";
@@ -7,7 +7,10 @@ import "@/assets/sass/app.scss";
 
 import _ from "lodash";
 import NProgress from "nprogress";
+import dayjs from "dayjs";
+import SmoothScroll from "smooth-scroll";
 
 window._ = _;
+window.dayjs = dayjs;
 window.NProgress = NProgress;
 window.SmoothScroll = SmoothScroll;

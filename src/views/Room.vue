@@ -1,7 +1,5 @@
 <template>
-  <div class="col-md-8 offset-lg-1 pb-5 mb-2 mb-lg-4 pt-md-5 mt-n3 mt-md-0">
-    <div></div>
-  </div>
+  <div></div>
 </template>
 
 <script setup>

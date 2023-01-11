@@ -14,12 +14,16 @@ import {
 import {
   getFirestore,
   collection,
+  setDoc,
+  addDoc,
+  doc,
   getDocs,
   onSnapshot,
   query,
   where,
   orderBy,
   limit,
+  FieldValue,
 } from "firebase/firestore";
 
 import firebase from "@/firebase";
@@ -31,8 +35,10 @@ const provider = new GoogleAuthProvider();
 const mainStore = defineStore("main", {
   state: () => ({
     authUser: {},
+    activeUser: {},
+    users: [],
     chatrooms: [],
-    chats: [],
+    messages: [],
   }),
   getters: {
     authenticated: (state) => !!state.authUser.uid,
@@ -54,7 +60,9 @@ const mainStore = defineStore("main", {
             const token = credential.accessToken;
             // The signed-in user info.
             this.authUser = result.user;
-            console.log(this.authUser, result.user)
+            // create user record
+            this.createUser(result.user);
+
             resolve(result.user);
           })
           .catch((error) => {
@@ -66,7 +74,7 @@ const mainStore = defineStore("main", {
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
-            console.log(error.message, error.customData)
+            console.log(error.message, error.customData);
             reject(error);
           });
       });
@@ -92,6 +100,8 @@ const mainStore = defineStore("main", {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             this.authUser = auth.currentUser;
+            // create user record
+            this.createUser(auth.currentUser);
             this.updateUser(payload);
             resolve(this.authUser);
           })
@@ -119,9 +129,43 @@ const mainStore = defineStore("main", {
           .catch((error) => reject(error));
       });
     },
-
-    createRoom(payload) {},
-    createMessage(payload) {},
+    async createUser(user) {
+      const docData = {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        createdAt: new Date(),
+      };
+      await setDoc(doc(db, "users", user.uid), docData);
+    },
+    getUsers() {
+      const colRef = collection(db, `users`);
+      const q = query(colRef, orderBy("createdAt", "desc"));
+      onSnapshot(q, (querySnapshot) => {
+        this.users = querySnapshot.docs
+          .map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+          .reverse();
+      });
+    },
+    async createRoom(room) {
+      await setDoc(doc(db, "chatrooms", room), docData);
+    },
+    async createMessage(text) {
+      const docData = {
+        uid: this.authUser.uid,
+        displayName: this.authUser.displayName,
+        photoURL: this.authUser.photoURL,
+        text,
+        // createdAt: new Date(),
+        createdAt: dayjs().toDate(),
+      };
+      await addDoc(collection(db, "messages"), docData);
+    },
     getChatrooms() {
       const colRef = collection(db, `chatrooms`);
       const q = query(colRef);
@@ -134,17 +178,18 @@ const mainStore = defineStore("main", {
         });
       });
     },
-    getChats(room) {
-      const colRef = collection(db, `chatrooms/${room}/chats`);
-      const q = query(colRef, orderBy("time", "desc"));
+    getMessages() {
+      // const colRef = collection(db, `chatrooms/${room}/messages`);
+      const colRef = collection(db, `messages`);
+      const q = query(colRef, orderBy("createdAt", "desc"));
       onSnapshot(q, (querySnapshot) => {
-        this.chats = [];
-        querySnapshot.forEach((doc) => {
-          this.chats.push({
+        console.log('querySnapshot', querySnapshot.docs);
+        this.messages = querySnapshot.docs
+          .map((doc) => ({
             id: doc.id,
             ...doc.data(),
-          });
-        });
+          }))
+          .reverse();
       });
     },
     resetState() {
