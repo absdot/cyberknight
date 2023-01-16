@@ -74,14 +74,14 @@
                 />
                 <div class="w-100 ps-2 ms-1">
                   <div
-                    class="d-flex align-items-center justify-content-between mb-1"
+                    class="d-flex align-items-center justify-content-between mb-2 mt-2"
                   >
                     <h6 class="mb-0 me-2">{{ user.displayName }}</h6>
-                    <span class="fs-xs text-muted">{{
+                    <!-- <span class="fs-xs text-muted">{{
                       dayjs(user.createdAt).format("h:m A")
-                    }}</span>
+                    }}</span> -->
                   </div>
-                  <p class="fs-sm text-body mb-0">Dolor, quam habitant...</p>
+                  <!-- <p class="fs-sm text-body mb-0">Dolor, quam habitant...</p> -->
                 </div>
               </a>
             </swiper-slide>
