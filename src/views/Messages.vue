@@ -261,6 +261,10 @@ onMounted(() => {
   // ResKKassjqWjQ8xp0o4EZ1UE8HJ3
 
   bottom.value?.scrollIntoView({ behaviour: "smooth" })
+
+  if(users.value.length > 0) {
+    activeUser.value = chatUsers.value[0];
+  }
 });
 
 const onCreateMessage = () => {
