@@ -31,6 +31,7 @@ import firebase from "@/firebase";
 const auth = getAuth(firebase);
 const db = getFirestore(firebase);
 const provider = new GoogleAuthProvider();
+const firebaseMessages = "messages"
 
 const mainStore = defineStore("main", {
   state: () => ({
@@ -155,6 +156,18 @@ const mainStore = defineStore("main", {
     async createRoom(room) {
       await setDoc(doc(db, "chatrooms", room), docData);
     },
+    async createMessage1(payload) {
+      const docId = [this.authUser.uid, payload.uid].sort();
+      const docData = {
+        uid: this.authUser.uid,
+        displayName: this.authUser.displayName,
+        photoURL: this.authUser.photoURL,
+        text,
+        // createdAt: new Date(),
+        createdAt: dayjs().toDate(),
+      };
+      await addDoc(collection(db, firebaseMessages, ), docData);
+    },
     async createMessage(text) {
       const docData = {
         uid: this.authUser.uid,
@@ -164,7 +177,7 @@ const mainStore = defineStore("main", {
         // createdAt: new Date(),
         createdAt: dayjs().toDate(),
       };
-      await addDoc(collection(db, "messages"), docData);
+      await addDoc(collection(db, firebaseMessages), docData);
     },
     getChatrooms() {
       const colRef = collection(db, `chatrooms`);
@@ -180,7 +193,7 @@ const mainStore = defineStore("main", {
     },
     getMessages() {
       // const colRef = collection(db, `chatrooms/${room}/messages`);
-      const colRef = collection(db, `messages`);
+      const colRef = collection(db, firebaseMessages);
       const q = query(colRef, orderBy("createdAt", "desc"));
       onSnapshot(q, (querySnapshot) => {
         console.log('querySnapshot', querySnapshot.docs);

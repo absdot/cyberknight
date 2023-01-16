@@ -154,26 +154,17 @@
           </div>
 
           <!-- Messages -->
-          <swiper
-            direction="vertical"
-            slidesPerView="auto"
-            :freeMode="true"
-            :mousewheel="true"
-            :_scrollbar="true"
-            :scrollbar="{
-              el: '.swiper-scrollbar',
-            }"
-            :modules="[FreeMode, Scrollbar, Mousewheel]"
-            :class="'card-body swiper scrollbar-hover overflow-hidden w-100 pb-0'"
+          <div
+            class="card-body scrollbar-hover overflow-scroll w-100 pb-0"
+            style="overflow: scroll"
           >
-            <swiper-slide class="h-auto">
-              <Message
-                v-for="(message, i) in messages"
-                :key="i"
-                :message="message"
-              />
-            </swiper-slide>
-          </swiper>
+            <Message
+              v-for="(message, i) in messages"
+              :key="i"
+              :message="message"
+            />
+            <div ref="bottom" class="mt-1-"></div>
+          </div>
 
           <!-- Footer (Send message form) -->
           <form
@@ -234,7 +225,7 @@ import "swiper/css";
 
 import Message from "@/components/Message.vue";
 
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch, watchEffect, nextTick } from "vue";
 import { mainStore } from "@/store";
 import { storeToRefs } from "pinia";
 
@@ -243,11 +234,24 @@ const { authUser, activeUser, users, messages, chatrooms } = storeToRefs(
 );
 const { getUsers, getChatrooms, getMessages, createMessage } = mainStore();
 
+const bottom = ref(null);
 const text = ref("");
 const chatUsers = computed(() =>
   users.value.filter((u) => u.uid != authUser.value.uid)
 );
 // const activeUser = ref({});
+
+// watchEffect(() => {
+//   nextTick(() => bottom.value?.scrollIntoView({ behaviour: "smooth" }));
+// });
+
+watch(
+  messages,
+  () => {
+    nextTick(() => bottom.value?.scrollIntoView({ behaviour: "smooth" }));
+  }
+  // { deep: true }
+);
 
 onMounted(() => {
   getUsers();
@@ -255,6 +259,8 @@ onMounted(() => {
   getChatrooms();
   console.log(messages.value);
   // ResKKassjqWjQ8xp0o4EZ1UE8HJ3
+
+  bottom.value?.scrollIntoView({ behaviour: "smooth" })
 });
 
 const onCreateMessage = () => {
